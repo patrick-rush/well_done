@@ -1,6 +1,9 @@
 class ProjectsController < ApplicationController
 
     def index
+        @user = current_user # User.find_by(id: params[:id])
+        @projects = @user.projects
+
     end
 
     def show
