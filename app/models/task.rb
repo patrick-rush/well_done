@@ -4,5 +4,5 @@ class Task < ApplicationRecord
 
   validates :title, :user_id, :project_id, presence: true
   validates :status, inclusion: { in: %w(incomplete in-progress completed) }
-  validates :due_date, date: { after_or_equal_to: Time.now }
+  validates_date :due_date, on_or_after: lambda { Date.now } 
 end
