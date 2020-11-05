@@ -3,16 +3,27 @@ Rails.application.routes.draw do
 
   resources :tasks
   resources :projects
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :users
 
-  unauthenticated do
-    root 'application#home', as: 'unauthenticated_user_root'
-  end
+  # unauthenticated do
+  #   root 'application#home', as: 'unauthenticated_user_root'
+  # end
  
-  authenticated do
-    root 'projects#index', as: 'authenticated_user_root'
+  # authenticated do
+  #   root 'projects#index', as: 'authenticated_user_root'
+  # end
+
+  authenticated :user do
+    root 'projects#index', as: 'authenticated_root'
   end
+  devise_scope :user do
+    root 'devise/sessions#new'
+  end
+
+  # devise_scope :user do
+  #   delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  # end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

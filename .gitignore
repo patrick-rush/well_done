@@ -42,3 +42,6 @@ yarn-debug.log*
 
 # Ignore Personal Notes
 .notes.md
+
+# Ignore ENV
+.env
