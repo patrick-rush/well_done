@@ -14,9 +14,8 @@
       <%= link_to "Edit profile", edit_user_registration_path %>
       <%= link_to 'Sign Out', destroy_user_session_path, method: "delete" %>
     <% else %>
-      <%= link_to('Log in with Facebook', user_facebook_omniauth_authorize_path) %>
+      <%= link_to 'Log in with Facebook', user_facebook_omniauth_authorize_path %>
       <%= link_to 'Sign In', new_user_session_path %>
-      <%= link_to 'Create an Account', new_user_registration_path %>
     <% end %>
 
     <nav>
