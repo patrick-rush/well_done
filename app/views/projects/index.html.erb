@@ -1,4 +1,4 @@
-<%= @user.full_name %> <br>
+<h2><%= @user.full_name %>'s Projects </h2><br>
 <% @projects.each do |project| %>
     <%= project.title %> <br>
     <ul>
@@ -7,3 +7,5 @@
         <% end %>
     </ul>
 <% end %>
+<%= link_to 'New Project', new_project_path %>
+<%= link_to 'New Task', new_task_path %>
