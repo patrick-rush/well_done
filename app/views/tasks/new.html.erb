@@ -5,5 +5,6 @@
   <%= f.label :due_date %> 
   <%= f.date_field :due_date %> <br>
   <%= f.label :project_id, "Project" %>
-  <%= f.collection_select :project_id, @projects, :id, :title %>
+  <%= f.collection_select :project_id, @projects, :id, :title %> <br>
+  <%= f.submit %>
 <% end %>

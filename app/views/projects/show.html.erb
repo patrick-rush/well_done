@@ -1,0 +1,9 @@
+<h1><%= @project.title %></h1>
+<h3>Tasks</h3>
+<% @project.tasks.each do |task| %>
+    <%= link_to task.title, task_path(task) %>
+    <ul>
+        <li>Due <%= task.due_date.strftime("%b %d, %Y") %></li>
+        <li><%= task.user.first_name%></li>
+    </ul>
+<% end %>

@@ -1,0 +1,15 @@
+<h1><%= @task.title %></h1>
+<h3>Details</h3>
+<ul>
+    <li>Due <%= @task.due_date.strftime("%b %d, %Y") %></li>
+    <li><%= @task.user.first_name%></li>
+</ul>
+
+<% if @task.status == "incomplete" %>
+    <%= form_for @task do |f| %>
+        <%= f.check_box :status, placeholder: "completed"%>
+        <%= f.submit %>
+    <% end %>
+<% else %>
+    <p>All done!</p>
+<% end %>
