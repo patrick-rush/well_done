@@ -1,4 +1,9 @@
 <%= form_for @task do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title %> <br>
+  <%= f.label :due_date %> 
+  <%= f.date_field :due_date %> <br>
+  <%= f.label :project_id, "Project" %>
+  <%= f.collection_select :project_id, @projects, :id, :title %>
 <% end %>
