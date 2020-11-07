@@ -7,3 +7,4 @@
         <li><%= task.user.first_name%></li>
     </ul>
 <% end %>
+<%= button_to "Delete Project", project_path(@project), method: :delete %>

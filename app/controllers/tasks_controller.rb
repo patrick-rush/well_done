@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
 
     def index
+        @tasks = Task.by_due_date
     end
 
     def show
@@ -44,6 +45,10 @@ class TasksController < ApplicationController
     end
 
     def destroy
+        task = Task.find_by(id: params[:id])
+        project = task.project 
+        task.destroy
+        redirect_to project_path(project)
     end
 
     private

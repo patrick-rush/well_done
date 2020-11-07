@@ -16,5 +16,5 @@
         <p>Completed: <%= f.check_box :completed, checked_value: "1", unchecked_value: "0" %></p>
         <%= f.submit %>
     <% end %>
-
 <% end %>
+<%= button_to "Delete Task", task_path(@task), method: :delete %>
