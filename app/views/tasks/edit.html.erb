@@ -7,6 +7,6 @@
     <%= f.date_field :due_date %> <br>
     <%= f.label :project_id, "Project" %>
     <%= f.collection_select :project_id, @projects, :id, :title %> <br>
-    <%= f.check_box :status, placeholder: "completed"%>
+    <%= f.check_box :completed, placeholder: "completed"%>
     <%= f.submit %>
 <% end %>

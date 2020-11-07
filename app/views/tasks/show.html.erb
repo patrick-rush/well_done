@@ -5,11 +5,16 @@
     <li><%= @task.user.first_name%></li>
 </ul>
 
-<% if @task.status == "incomplete" %>
+<% if @task.completed == false %>
     <%= form_for @task do |f| %>
-        <%= f.check_box :status, placeholder: "completed"%>
+        <p>Completed: <%= f.check_box :completed, checked_value: "1", unchecked_value: "0" %></p>
         <%= f.submit %>
     <% end %>
 <% else %>
     <p>All done!</p>
+    <%= form_for @task do |f| %>
+        <p>Completed: <%= f.check_box :completed, checked_value: "1", unchecked_value: "0" %></p>
+        <%= f.submit %>
+    <% end %>
+
 <% end %>

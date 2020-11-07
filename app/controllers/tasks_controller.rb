@@ -31,12 +31,16 @@ class TasksController < ApplicationController
     def update
         # byebug
         task = Task.find_by(id: params[:id])
-        task.update(task_params)
-        if params[:task][:status] == "1"
-            task.status = "completed"
-            task.save
+        if task.update(task_params)
             redirect_to task_path(task)
+        else
+            redirect_to edit_task_path(task)
         end
+        # if params[:task][:completed] == true
+        #     task.completed = true
+        #     task.save
+        #     redirect_to task_path(task)
+        # end
     end
 
     def destroy
@@ -45,7 +49,7 @@ class TasksController < ApplicationController
     private
 
     def task_params
-        params.require(:task).permit(:title, :status, :due_date, :user_id, :project_id)
+        params.require(:task).permit(:title, :completed, :due_date, :user_id, :project_id)
     end
     
 end
