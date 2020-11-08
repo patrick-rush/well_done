@@ -1,0 +1,5 @@
+<h2><%= current_user.full_name %>'s Upcoming Tasks </h2><br>
+<% @tasks.each do |task| %> <br>
+    <%= link_to task.title, task_path(task) %>
+<% end %>
+<%= link_to 'New Task', new_task_path %>

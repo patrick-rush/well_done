@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
     def index
-        @tasks = Task.by_due_date
+        @tasks = Task.by_due_date.where(user_id: current_user.id)
     end
 
     def show
