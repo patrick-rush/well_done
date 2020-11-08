@@ -7,9 +7,19 @@ class User < ApplicationRecord
   has_many :tasks
   has_many :projects, through: :tasks
   has_many :projects, foreign_key: :creator_id
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
 
   validates :first_name, :last_name, :email, presence: true
   validates :email, presence: true, uniqueness: true
+
+  def self.search(search)
+    where("(first_name like ?) or (last_name like ?) or (email like ?)", "%#{search}%", "%#{search}%", "%#{search}%")
+    # if find_by(first_name: search) || find_by(last_name: search) || find_by(email: search)
+    # else
+    #   all
+    # end
+  end
 
   def full_name
     "#{first_name} #{last_name}"

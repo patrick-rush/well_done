@@ -1,0 +1,10 @@
+<h1> Search Results </h1>
+
+<% @users.each do |user| %>
+    <h3><%= link_to "#{user.full_name}", user_path(user) %></h3>
+    <% if @search %>
+        <%= link_to "Add #{user.first_name} as a friend", friendships_path(friend_id: user.id), method: "post" %> <br><br>
+    <% else %>
+        <%= link_to "Remove #{user.first_name} as a friend", friendship_path(user.id), method: "delete" %> <br><br>
+    <% end %>
+<% end %>
