@@ -2,9 +2,13 @@ Rails.application.routes.draw do
   # root 'application#home'
 
   resources :tasks
-  resources :projects
+  resources :projects do
+    resources :tasks, only: [:new]
+  end
+  resources :users, only: [] do
+    resources :projects, only: [:index]
+  end
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-  # resources :users
 
   authenticated :user do
     root 'projects#index', as: 'authenticated_root'

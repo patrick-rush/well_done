@@ -1,7 +1,12 @@
 class ProjectsController < ApplicationController
 
     def index
-        @user = current_user # User.find_by(id: params[:id])
+        # byebug
+        if params[:user_id]
+            @user = User.find_by(id: params[:user_id])
+        else
+            @user = current_user
+        end
         @projects = @user.projects
     end
 

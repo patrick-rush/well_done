@@ -8,12 +8,20 @@ class TasksController < ApplicationController
         @task = Task.find_by(id: params[:id])
     end
 
+# Start here! Need to figure out how to get project id back to controller
+
     def new
-        @task = Task.new
-        @projects = current_user.projects
+        if params[:project_id]
+            project = Project.find_by(id: params[:project_id])
+            @task = project.tasks.build #Task.build(project_id: params[:project_id])
+        else
+            @task = Task.new
+            @projects = current_user.projects
+        end
     end
 
     def create
+        # byebug
         task = Task.new(task_params)
         if task.save
             flash[:success] = "Task has been added"

@@ -4,7 +4,11 @@
   <%= f.text_field :title %> <br>
   <%= f.label :due_date %> 
   <%= f.date_field :due_date %> <br>
-  <%= f.label :project_id, "Project" %>
-  <%= f.collection_select :project_id, @projects, :id, :title %> <br>
+  <% if @task.project_id %>
+    <%= f.hidden_field :project_id, value: @task.project_id %>
+  <% else %>
+    <%= f.label :project_id, "Project" %>
+    <%= f.collection_select :project_id, @projects, :id, :title %> <br>
+  <% end %>
   <%= f.submit %>
 <% end %>
