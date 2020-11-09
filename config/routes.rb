@@ -11,7 +11,6 @@ Rails.application.routes.draw do
     resources :projects, only: [:index]
   end
 
-
   authenticated :user do
     root 'projects#index', as: 'authenticated_root'
   end

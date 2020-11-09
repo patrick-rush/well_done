@@ -29,6 +29,9 @@
         <%= link_to 'Friends', users_path %>
       <% end %>
     </nav>
+    <% if notice == "Signed out successfully."%>
+      <p>Please note: <%= link_to 'Click here to sign out of your Google account.', 'https://accounts.google.com/signin' %> </p>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <% flash.each do |type, msg| %>
