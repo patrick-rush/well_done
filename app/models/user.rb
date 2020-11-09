@@ -29,6 +29,14 @@ class User < ApplicationRecord
   #   "#{first_name} #{last_name}"
   # end
 
+  def first_name
+    full_name.split(/ /).first
+  end
+
+  def last_name
+    full_name.split(/ /).last
+  end
+
   def self.from_google(email:, full_name:, uid:, avatar_url:)
     user = User.find_or_create_by(email: email) do |u|
       u.uid = uid 
