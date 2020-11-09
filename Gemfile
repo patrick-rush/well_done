@@ -55,3 +55,6 @@ gem 'omniauth-google-oauth2'
 gem 'validates_timeliness', '~> 5.0.0.beta1'
 # gem "date_validator", "~> 0.10.0"
 
+gem 'securerandom'
+
+
