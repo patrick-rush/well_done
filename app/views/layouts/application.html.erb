@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WellDone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "WellDone" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Get Things Done Well" %>">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,25 +12,10 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <%= link_to 'Edit profile', edit_user_registration_path %>
-      <%= link_to 'Sign Out', destroy_user_session_path, method: "delete" %>
-      <%= form_tag(users_path, method: :get) do %>
-        Search other users by name or email: <%= text_field_tag(:search, params[:search]) %>
-        <%= submit_tag ("Search") %>
-      <% end %>
-    <% else %>
-      <%= link_to 'Sign In', new_user_session_path %>
-    <% end %>
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
 
-    <nav>
-      <% if user_signed_in? %>
-        <%= link_to 'Home', root_path %>
-        <%= link_to 'Projects', projects_path %>
-        <%= link_to 'Tasks', tasks_path %>
-        <%= link_to 'Friends', users_path %>
-      <% end %>
-    </nav>
     <% if notice == "Signed out successfully."%>
       <p>Please note: <%= link_to 'Click here to sign out of your Google account.', 'https://accounts.google.com/signin' %> </p>
     <% end %>
@@ -37,6 +24,7 @@
         <%= msg %>
       </div>
     <% end %>
+
 
     <%= yield %>
   </body>
