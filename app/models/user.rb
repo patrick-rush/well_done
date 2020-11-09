@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :projects, foreign_key: :creator_id
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
+  has_many :comments
 
   devise :database_authenticatable, :registerable,
   :validatable, :omniauthable, omniauth_providers: [:google_oauth2] 

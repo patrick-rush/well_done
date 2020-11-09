@@ -1,6 +1,7 @@
 class Project < ApplicationRecord
     has_many :tasks
     has_many :users, through: :tasks
+    has_many :comments, as: :commentable
     belongs_to :creator, class_name: :User, foreign_key: :creator_id
     
     validates :title, presence: true
