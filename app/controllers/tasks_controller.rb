@@ -12,7 +12,7 @@ class TasksController < ApplicationController
     def new
         if params[:project_id]
             project = Project.find_by(id: params[:project_id])
-            @task = project.tasks.build #Task.build(project_id: params[:project_id])
+            @task = project.tasks.build
         else
             @task = Task.new
             @projects = current_user.projects
