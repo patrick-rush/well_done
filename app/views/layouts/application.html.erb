@@ -18,7 +18,6 @@
         <%= submit_tag ("Search") %>
       <% end %>
     <% else %>
-      <%= link_to 'Log in with Facebook', user_facebook_omniauth_authorize_path %>
       <%= link_to 'Sign In', new_user_session_path %>
     <% end %>
 

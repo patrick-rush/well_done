@@ -31,6 +31,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'dotenv-rails'
+  gem 'pry-rails'
 end
 
 group :development do
@@ -47,9 +49,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "devise", "~> 4.7"
 gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'dotenv-rails'
-# gem 'omniauth-google-oauth2'
+# gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 gem 'validates_timeliness', '~> 5.0.0.beta1'
 # gem "date_validator", "~> 0.10.0"
