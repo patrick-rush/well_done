@@ -10,6 +10,7 @@
   <%= f.date_field :due_date %> <br>
   <% if @task.project_id %>
     <%= f.hidden_field :project_id, value: @task.project_id %>
+    <%= f.hidden_field :nested_route, value: true %>
   <% else %>
     <%= f.label :project_id, "Project" %>
     <%= f.collection_select :project_id, @projects, :id, :title %> <br>

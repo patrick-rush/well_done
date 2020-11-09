@@ -1,7 +1,6 @@
 class ProjectsController < ApplicationController
 
     def index
-        # byebug
         if params[:user_id]
             @user = User.find_by(id: params[:user_id])
         else
@@ -19,10 +18,10 @@ class ProjectsController < ApplicationController
     end
 
     def create
-        project = Project.new(project_params)
-        if project.save
-            flash[:success] = "Your project was created"
-            redirect_to project_path(project)
+        @project = Project.new(project_params)
+        if @project.save
+            flash[:success] = "Your project was created."
+            redirect_to project_path(@project)
         else
             flash[:error] = "Something went wrong! Please try again."
             redirect_to new_project_path
@@ -30,14 +29,23 @@ class ProjectsController < ApplicationController
     end
 
     def edit
+        @project = Project.find_by(id: params[:id])
     end
 
     def update
+        @project = Project.find_by(id: params[:id])
+        if @project.update(project_params)
+            flash[:success] = "Your project has been updated."
+            redirect_to project_path(@project)
+        else
+            flash[:error] = "Something went wrong! Please try again."
+            redirect_to edit_project_path(@project)
+        end
     end
 
     def destroy
-        project = Project.find_by(id: params[:id])
-        project.destroy
+        @project = Project.find_by(id: params[:id])
+        @project.destroy
         redirect_to projects_path
 
     end

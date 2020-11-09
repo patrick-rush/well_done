@@ -1,11 +1,13 @@
 class TasksController < ApplicationController
+    before_action :set_task, only: [:show, :edit, :update, :destroy]
+
 
     def index
+        # byebug
         @tasks = Task.by_due_date.where(user_id: current_user.id)
     end
 
     def show
-        @task = Task.find_by(id: params[:id])
     end
 
 # Start here! Need to figure out how to get project id back to controller
@@ -22,28 +24,32 @@ class TasksController < ApplicationController
 
     def create
         # byebug
-        task = Task.new(task_params)
-        if task.save
+        @task = Task.new(task_params)
+        if @task.save
             flash[:success] = "Task has been added"
-            redirect_to project_path(task.project_id)
+            redirect_to project_path(@task.project_id)
         else
             flash[:error] = "Something went wrong! Please try again."
-            redirect_to new_task_path
+            if params[:task][:nested_route]
+                redirect_to new_project_task_path(params[:task][:project_id])
+            else
+                redirect_to new_task_path
+            end
         end
     end
 
     def edit
-        @task = Task.find_by(id: params[:id])
         @projects = current_user.projects
     end
 
     def update
         # byebug
-        task = Task.find_by(id: params[:id])
-        if task.update(task_params)
-            redirect_to task_path(task)
+        if @task.update(task_params)
+            flash[:success] = "Task updated."
+            redirect_to project_path(@task.project)
         else
-            redirect_to edit_task_path(task)
+            flash[:error] = "Something went wrong! Please try again."
+            redirect_to edit_task_path(@task)
         end
         # if params[:task][:completed] == true
         #     task.completed = true
@@ -53,13 +59,16 @@ class TasksController < ApplicationController
     end
 
     def destroy
-        task = Task.find_by(id: params[:id])
-        project = task.project 
-        task.destroy
+        project = @task.project 
+        @task.destroy
         redirect_to project_path(project)
     end
 
     private
+
+    def set_task
+        @task = Task.find_by(id: params[:id])
+    end
 
     def task_params
         params.require(:task).permit(:title, :completed, :due_date, :user_id, :project_id)
