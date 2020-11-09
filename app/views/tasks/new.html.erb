@@ -1,5 +1,7 @@
 <% if @task.project_id %>
   <h3>New task for <%= @task.project.title %> </h3>
+<% else %>
+  <h3>New Task</h3>
 <% end %>
 
 <%= form_for @task do |f| %>

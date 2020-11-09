@@ -5,16 +5,12 @@
     <li><%= @task.user.first_name%></li>
 </ul>
 
-<% if @task.completed == false %>
-    <%= form_for @task do |f| %>
-        <p>Completed: <%= f.check_box :completed, checked_value: "1", unchecked_value: "0" %></p>
-        <%= f.submit %>
-    <% end %>
-<% else %>
+<% if @task.completed == true %>
     <p>All done!</p>
-    <%= form_for @task do |f| %>
-        <p>Completed: <%= f.check_box :completed, checked_value: "1", unchecked_value: "0" %></p>
-        <%= f.submit %>
-    <% end %>
 <% end %>
+<%= form_for @task do |f| %>
+    <p>Completed: <%= f.check_box :completed, checked_value: "1", unchecked_value: "0" %></p>
+    <%= f.submit %>
+<% end %>
+<%= link_to 'Edit Task', edit_task_path(@task) %> <br>
 <%= button_to "Delete Task", task_path(@task), method: :delete %>

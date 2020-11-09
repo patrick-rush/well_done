@@ -6,4 +6,12 @@ class Project < ApplicationRecord
     validates :title, presence: true
     validates :private, inclusion: [true, false]
     validates :status, inclusion: { in: %w(open closed) }
+
+    def incomplete_tasks
+        tasks.where(completed: false)
+    end
+
+    def completed_tasks
+        tasks.where(completed: true)
+    end
 end

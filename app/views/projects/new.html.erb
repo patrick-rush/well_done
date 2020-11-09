@@ -1,11 +1,3 @@
-<%= form_for @project do |f| %>
-  <%= f.hidden_field :creator_id, value: current_user.id %>
-  <%= f.label :title %>
-  <%= f.text_field :title %> <br>
-  <%= f.label :private, "Private?*" %> 
-  <%= f.check_box :private, checked: false, unchecked: true %> <br>
-  <%= f.submit %>
-<% end %>
+<h3>New Project</h3>
 
-<p>* Public projects will be visible to anyone you are friends with.</p>
-
+<%= render partial: "project", locals: {project: @project} %>

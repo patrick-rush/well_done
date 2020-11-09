@@ -1,12 +1,15 @@
 <h1><%= @project.title %></h1>
 <h3>Tasks</h3>
-<% @project.tasks.each do |task| %>
+<% @project.incomplete_tasks.each do |task| %>
     <%= link_to task.title, task_path(task) %>
     <ul>
         <li>Due <%= task.readable_due_date %></li>
-        <li><%= task.user.first_name%></li>
     </ul>
 <% end %>
+<h3>Completed Tasks</h3>
+<% @project.completed_tasks.each do |task| %>
+    <%= link_to task.title, task_path(task) %>
+<% end %> <br><br>
 <%= link_to 'Edit This Project', edit_project_path(@project) %> <br>
 <%= link_to 'New Task', new_project_task_path(@project) %>
 <%= button_to "Delete Project", project_path(@project), method: :delete %>

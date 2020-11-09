@@ -24,4 +24,8 @@ class User < ApplicationRecord
     end
   end
 
+  def public_projects
+    projects.where(private: false)
+  end 
+
 end

@@ -11,7 +11,11 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find_by(id: params[:id])
-        @projects = @user.projects
+        if @user == current_user
+            @projects = @user.projects
+        else
+            @projects = @user.public_projects
+        end
     end
 
     private 
