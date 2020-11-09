@@ -3,14 +3,11 @@ class TasksController < ApplicationController
 
 
     def index
-        # byebug
         @tasks = Task.by_due_date.where(user_id: current_user.id)
     end
 
     def show
     end
-
-# Start here! Need to figure out how to get project id back to controller
 
     def new
         if params[:project_id]
@@ -23,7 +20,6 @@ class TasksController < ApplicationController
     end
 
     def create
-        # byebug
         @task = Task.new(task_params)
         if @task.save
             flash[:success] = "Task has been added"
@@ -43,7 +39,6 @@ class TasksController < ApplicationController
     end
 
     def update
-        # byebug
         if @task.update(task_params)
             flash[:success] = "Task updated."
             redirect_to project_path(@task.project)
@@ -51,11 +46,6 @@ class TasksController < ApplicationController
             flash[:error] = "Something went wrong! Please try again."
             redirect_to edit_task_path(@task)
         end
-        # if params[:task][:completed] == true
-        #     task.completed = true
-        #     task.save
-        #     redirect_to task_path(task)
-        # end
     end
 
     def destroy

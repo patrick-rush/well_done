@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
     def index
-        # byebug
         if params[:search]
             @search = true
             @users = User.search(params[:search])
@@ -11,7 +10,6 @@ class UsersController < ApplicationController
     end
 
     def show
-        # byebug
         @user = User.find_by(id: params[:id])
         @projects = @user.projects
     end
