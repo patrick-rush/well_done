@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_09_220044) do
+ActiveRecord::Schema.define(version: 2020_11_10_204412) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -36,8 +36,6 @@ ActiveRecord::Schema.define(version: 2020_11_09_220044) do
     t.string "status", default: "open"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "creator_id"
-    t.index ["creator_id"], name: "index_projects_on_creator_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -77,7 +75,6 @@ ActiveRecord::Schema.define(version: 2020_11_09_220044) do
 
   add_foreign_key "comments", "users"
   add_foreign_key "friendships", "users"
-  add_foreign_key "projects", "users", column: "creator_id"
   add_foreign_key "tasks", "projects"
   add_foreign_key "tasks", "users"
 end

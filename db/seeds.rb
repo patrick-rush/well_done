@@ -27,7 +27,6 @@ end
 
 # Seed Projects
 25.times do
-    random_id = Faker::Number.within(range: 1..5)
     random_boolean = Faker::Boolean.boolean
     project = Project.new
     project.title = Faker::Job.position
@@ -37,7 +36,6 @@ end
     else
         project.status = "closed"
     end
-    project.creator_id = random_id
     project.save 
 end
 

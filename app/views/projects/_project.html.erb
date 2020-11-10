@@ -1,5 +1,4 @@
 <%= form_for @project do |f| %>
-  <%= f.hidden_field :creator_id, value: current_user.id %>
   <%= f.label :title %>
   <%= f.text_field :title %> <br>
   <%= f.label :private, "Private?*" %> 
