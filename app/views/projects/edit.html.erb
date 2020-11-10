@@ -1,4 +1,9 @@
 <h3>Edit <%= @project.title %> </h3>
 
-<%= render partial: "project", locals: {project: @project} %>
-
+<%= form_for @project do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %> <br>
+  <%= f.label :private, "Private?*" %> 
+  <%= f.check_box :private, checked: false, unchecked: true %> <br>
+  <%= f.submit %>
+<% end %>

@@ -17,15 +17,18 @@ class ProjectsController < ApplicationController
 
     def new
         @project = Project.new
+        @project.tasks.build
     end
 
     def create
-        @project = Project.new(project_params)
+        # binding.pry
+        @project = Project.create(project_params)
         if @project.save
             flash[:success] = "Your project was created."
             redirect_to project_path(@project)
         else
             flash[:error] = "Something went wrong! Please try again."
+            binding.pry
             redirect_to new_project_path
         end
     end
@@ -55,7 +58,16 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-        params.require(:project).permit(:title, :private, :status)
+        params.require(:project).permit(
+            :title,
+            :private,
+            :status,
+            tasks_attributes: [
+                :user_id,
+                :title,
+                :due_date
+            ]
+        )
     end
     
 end
