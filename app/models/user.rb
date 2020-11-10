@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   def self.search(search)
-    where("(first_name like ?) or (last_name like ?) or (email like ?)", "%#{search}%", "%#{search}%", "%#{search}%")
+    where("(full_name like ?) or (email like ?)", "%#{search}%", "%#{search}%")
   end
 
   def self.from_google(email:, full_name:, uid:, avatar_url:)
