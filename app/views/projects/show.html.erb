@@ -7,23 +7,14 @@
     </ul>
 <% end %>
 <h3>Completed Tasks</h3>
+    <ul>
 <% @project.completed_tasks.each do |task| %>
-    <%= link_to task.title, task_path(task) %>
+        <li><%= link_to task.title, task_path(task) %></li>
 <% end %> <br><br>
+    </ul>
+
 <%= link_to 'Edit This Project', edit_project_path(@project) %> <br>
 <%= link_to 'New Task', new_project_task_path(@project) %>
 <%= button_to "Delete Project", project_path(@project), method: :delete %>
 
-<% @project.comments.each do |comment| %>
-    Comment from <%= comment.user.full_name %>: <br>
-    <%= comment.content %> <br><br>
-<% end %>
-
-<%= form_for @comment do |f| %>
-    <%= f.hidden_field :commentable_type, value: "Project" %>
-    <%= f.hidden_field :commentable_id, value: @project.id %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.label :content, "New Comment" %>
-    <%= f.text_area :content %>
-    <%= f.submit %>
-<% end %>
+<%= render partial: "comments/comment", locals: { object: @project } %>

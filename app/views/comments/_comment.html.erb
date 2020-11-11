@@ -1,0 +1,15 @@
+<h3>Comments</h3>
+
+<% object.comments.each do |comment| %>
+    Comment from <%= comment.user.full_name %>: <br>
+    <%= comment.content %> <br><br>
+<% end %>
+
+<%= form_for @comment do |f| %>
+    <%= f.hidden_field :commentable_type, value: object.class.to_s %>
+    <%= f.hidden_field :commentable_id, value: object.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.label :content, "New Comment" %>
+    <%= f.text_area :content %>
+    <%= f.submit %>
+<% end %>

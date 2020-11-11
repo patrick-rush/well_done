@@ -1,6 +1,8 @@
 <h2><%= current_user.full_name %>'s Upcoming Tasks </h2><br>
-<% @tasks.each do |task| %> <br>
-    <%= link_to task.title, task_path(task) %> due <%= task.readable_due_date %> in <%= task.project.title %>
+<ul>
+<% @tasks.each do |task| %>
+    <li><%= link_to task.title, task_path(task) %> due <%= task.readable_due_date %> in <%= task.project.title %></li>
 <% end %>
+</ul>
 <br><br> <%= link_to 'New Task', new_task_path %> <br>
 
