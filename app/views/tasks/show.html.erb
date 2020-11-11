@@ -11,7 +11,7 @@
 <% else %>
     <%= button_to "Mark as Completed", task_path(@task), method: :patch, params: { :"task[completed]" => true } %>
 <% end %>
-<%= button_to "Edit Task", edit_task_path(@task) %>
+<%= button_to "Edit Task", edit_task_path(@task), method: :get %>
 <%= button_to "Delete Task", task_path(@task), method: :delete %>
 
 <%= render partial: "comments/comment", locals: { object: @task } %>
