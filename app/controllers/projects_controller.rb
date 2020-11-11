@@ -61,7 +61,6 @@ class ProjectsController < ApplicationController
         params.require(:project).permit(
             :title,
             :private,
-            :status,
             tasks_attributes: [
                 :user_id,
                 :title,

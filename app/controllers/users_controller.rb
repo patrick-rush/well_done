@@ -2,7 +2,6 @@ class UsersController < ApplicationController
 
     def index
         if params[:search]
-            @search = true
             @users = User.search(params[:search])
         else
             @users = current_user.friends

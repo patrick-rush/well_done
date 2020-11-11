@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :friends, through: :friendships
   has_many :comments
 
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :recoverable,
   :validatable, :omniauthable, omniauth_providers: [:google_oauth2] 
 
   validates :full_name, presence: true
@@ -27,5 +27,9 @@ class User < ApplicationRecord
   def public_projects
     projects.where(private: false)
   end 
+
+  def is_friends_with?(user)
+    friends.include?(user)
+  end
 
 end

@@ -27,15 +27,9 @@ end
 
 # Seed Projects
 25.times do
-    random_boolean = Faker::Boolean.boolean
     project = Project.new
     project.title = Faker::Job.position
     project.private = Faker::Boolean.boolean
-    if random_boolean
-        project.status = "open"
-    else
-        project.status = "closed"
-    end
     project.save 
 end
 
