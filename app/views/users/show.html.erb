@@ -1,9 +1,5 @@
 <h2><%= @user.full_name %>'s Projects </h2><br>
 <% @projects.each do |project| %>
     <%= link_to project.title, project_path(project) %>
-    <ul>
-        <% project.tasks.each do |task| %>
-            <li> <%= link_to task.title, task_path(task) %> </li>
-        <% end %>
-    </ul>
+    <%= render partial: "tasks/task_list", locals: {tasks: project.tasks} %>
 <% end %>
