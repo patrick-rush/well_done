@@ -1,5 +1,5 @@
 <% @users.each do |user| %>
-    <h3><%= link_to "#{user.full_name}", user_path(user) %></h3>
+    <h3><%= link_to "#{user.full_name}", user_projects_path(user) %></h3>
     <% if current_user.is_friends_with?(user) %>
         <%= link_to "Remove #{user.full_name} as a friend", friendship_path(user.id), method: "delete" %> <br><br>
     <% else %>
