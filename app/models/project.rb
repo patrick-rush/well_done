@@ -9,10 +9,10 @@ class Project < ApplicationRecord
     validates :status, inclusion: { in: %w(open closed) }
 
     def incomplete_tasks
-        tasks.where(completed: false)
+        tasks.where(completed: false).order(due_date: :asc)
     end
 
     def completed_tasks
-        tasks.where(completed: true)
+        tasks.where(completed: true).order(due_date: :asc)
     end
 end
