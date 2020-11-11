@@ -1,17 +1,17 @@
 <h1><%= @task.title %></h1>
+<p>This task was created by <%= @task.user.full_name %>.</p>
+
 <h3>Details</h3>
 <ul>
     <li>Due <%= @task.readable_due_date %></li>
 </ul>
 
-<% if @task.completed == true %>
-    <p>All done!</p>
+<% if @task.completed %>
+    <%= button_to "Mark as Incomplete", task_path(@task), method: :patch, params: { :"task[completed]" => false } %>
+<% else %>
+    <%= button_to "Mark as Completed", task_path(@task), method: :patch, params: { :"task[completed]" => true } %>
 <% end %>
-<%= form_for @task do |f| %>
-    <p>Completed: <%= f.check_box :completed, checked_value: "1", unchecked_value: "0" %></p>
-    <%= f.submit %>
-<% end %>
-<%= link_to 'Edit Task', edit_task_path(@task) %> <br>
+<%= button_to "Edit Task", edit_task_path(@task) %>
 <%= button_to "Delete Task", task_path(@task), method: :delete %>
 
 <h3>Comments</h3>
