@@ -1,7 +1,7 @@
 <% if @task.project_id %>
-  <h3>New task for <%= @task.project.title %> </h3>
+  <h3>New task for <%= @task.project.title %> </h3> <br>
 <% else %>
-  <h3>New Task</h3>
+  <h3>New Task</h3> <br>
 <% end %>
 
 <%= render partial: "task_form", locals: {task: @task, projects: @projects} %>
