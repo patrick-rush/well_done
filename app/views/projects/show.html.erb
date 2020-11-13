@@ -1,6 +1,6 @@
 <h3 class="title"><%= @project.title %></h3> <br>
 
-<h3>Tasks</h3>
+<h5>Tasks</h5>
 <% @project.incomplete_tasks.each do |task| %>
     <%= link_to task.title, task_path(task) %>
     <ul>
@@ -8,7 +8,7 @@
     </ul>
 <% end %>
 <% if @project.completed_tasks.count > 0 %>
-    <h3>Completed Tasks</h3>
+    <h5>Completed Tasks</h5>
     <%= render partial: "tasks/task_list", locals: {tasks: @project.completed_tasks} %> <br>
 <% end %>
 <%= button_to "Edit This Project", edit_project_path(@project), method: :get %>

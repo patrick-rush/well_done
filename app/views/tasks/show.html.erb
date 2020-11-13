@@ -1,7 +1,7 @@
 <h3><%= @task.title %></h3> <br>
 <p>This task was created by <%= link_to @task.user.full_name, user_projects_path(@task.user) %>.</p>
 
-<h3>Details</h3>
+<h5>Details</h5>
 <ul>
     <li>Due <%= readable_due_date @task %></li>
     <li>Part of the <%= link_to @task.project.title, project_path(@task.project) %> project.</li>
