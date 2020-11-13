@@ -1,16 +1,22 @@
-<nav>
+<div>
+<nav class="nav">
     <% if user_signed_in? %>
-        <%= link_to 'Edit profile', edit_user_registration_path %>
-        <%= link_to 'Sign Out', destroy_user_session_path, method: "delete" %>
-        <%= link_to 'Home', root_path %>
-        <%= link_to 'Projects', projects_path %>
-        <%= link_to 'Tasks', tasks_path %>
-        <%= link_to 'Friends', users_path %>
-        <%= form_tag(users_path, method: :get) do %>
-            Search other users by name or email: <%= text_field_tag(:search, params[:search]) %>
-            <%= submit_tag ("Search") %>
-        <% end %>
-    <% else %>
-        <%= link_to 'Sign In', new_user_session_path %>
+        <ul class="nav">
+            <li><%= link_to 'Home', root_path, class: "nav-link" %></li>
+            <li><%= link_to 'Projects', projects_path, class: "nav-link" %></li>
+            <li><%= link_to 'Tasks', tasks_path, class: "nav-link" %></li>
+            <li><%= link_to 'Friends', users_path, class: "nav-link" %></li> <br>
+            <li><%= link_to 'Edit Profile', edit_user_registration_path, class: "nav-link" %></li>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: "delete", class: "nav-link" %></li>
+        </ul>
     <% end %>
 </nav>
+
+<div class="search">
+    <% if user_signed_in? %>
+            <%= form_tag(users_path, method: :get) do %>
+                <%= text_field_tag(:search, params[:search]) %>
+                <%= submit_tag ("Search Users") %>
+            <% end %>
+    <% end %>
+</div>
