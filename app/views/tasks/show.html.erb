@@ -4,6 +4,7 @@
 <h3>Details</h3>
 <ul>
     <li>Due <%= readable_due_date @task %></li>
+    <li>Part of the <%= link_to @task.project.title, project_path(@task.project) %> project.</li>
 </ul>
 
 <% if @task.completed %>
