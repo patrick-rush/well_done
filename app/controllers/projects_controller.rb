@@ -5,10 +5,11 @@ class ProjectsController < ApplicationController
     def index
         if params[:user_id]
             @user = User.find_by(id: params[:user_id])
+            @projects = @user.public_projects
         else
             @user = current_user
+            @projects = @user.projects
         end
-        @projects = @user.projects
     end
 
     def show
@@ -55,6 +56,13 @@ class ProjectsController < ApplicationController
 
     def set_project
         @project = Project.find_by(id: params[:id])
+        if @project && !@project.users.include?(current_user) && @project.private 
+            flash[:error] = "You are not permitted to see that page!"
+            redirect_to projects_path
+        elsif !@project
+            flash[:error] = "No project found."
+            redirect_to projects_path
+        end
     end
 
     def project_params

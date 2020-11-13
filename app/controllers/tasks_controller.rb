@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
     before_action :set_task, only: [:show, :edit, :update, :destroy]
 
-
     def index
         @tasks = Task.by_due_date.where(user_id: current_user.id)
     end
@@ -59,6 +58,13 @@ class TasksController < ApplicationController
 
     def set_task
         @task = Task.find_by(id: params[:id])
+        if @task && !@task.project.users.include?(current_user) && @task.project.private
+            flash[:error] = "You are not permitted to see that page!"
+            redirect_to projects_path
+        elsif !@task 
+            flash[:error] = "No task found."
+            redirect_to projects_path
+        end
     end
 
     def task_params

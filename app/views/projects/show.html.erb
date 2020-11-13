@@ -9,7 +9,7 @@
 <h3>Completed Tasks</h3>
 <%= render partial: "tasks/task_list", locals: {tasks: @project.completed_tasks} %> <br>
 <%= button_to "Edit This Project", edit_project_path(@project), method: :get %>
-<%= button_to 'New Task', new_project_task_path(@project) %>
+<%= button_to 'New Task', new_project_task_path(@project), method: :get %>
 <%= button_to "Delete Project", project_path(@project), method: :delete %>
 
 <%= render partial: "comments/comment", locals: { object: @project } %>
