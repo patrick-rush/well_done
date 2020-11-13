@@ -11,9 +11,4 @@ class Task < ApplicationRecord
   def self.by_due_date
     where(completed: false).order(due_date: :asc).limit(10)
   end
-
-  def readable_due_date
-    due_date.strftime("%b %d, %Y")
-  end
-
 end

@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
 
     def create
         @comment = Comment.new(comment_params)
-        # binding.pry
         if @comment.commentable_type == "Task" && @comment.save
             flash[:success] = "Your comment has been added"
             redirect_to task_path(@comment.commentable_id)

@@ -3,7 +3,7 @@
 <% @project.incomplete_tasks.each do |task| %>
     <%= link_to task.title, task_path(task) %>
     <ul>
-        <li>Due <%= task.readable_due_date %></li>
+        <li>Due <%= readable_due_date task %></li>
     </ul>
 <% end %>
 <h3>Completed Tasks</h3>
