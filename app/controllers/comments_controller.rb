@@ -14,16 +14,13 @@ class CommentsController < ApplicationController
             session[:return_to] ||= request.referer
             redirect_to session.delete(:return_to)
         end
+    end
 
-
-        # elsif @comment.task_id && @comment.save
-        #     flash[:success] = "Your comment has been added"
-        #     redirect_to task_path(@comment.task_id)
-        # else
-        #     flash[:error] = "Something went wrong! Please try again."
-        #     session[:return_to] ||= request.referer
-        #     redirect_to session.delete(:return_to)
-        # end
+    def destroy  
+        @comment = Comment.find_by(id: params[:id])
+        @comment.destroy
+        session[:return_to] ||= request.referer
+        redirect_to session.delete(:return_to)
     end
 
     private

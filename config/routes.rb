@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :tasks, only: [:new]
   end
   resources :friendships, only: [:new, :create, :destroy]
-  resources :comments
+  resources :comments, only: [:create, :destroy]
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :users, only: [:index, :show] do
     resources :projects, only: [:index]
