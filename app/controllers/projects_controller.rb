@@ -22,14 +22,12 @@ class ProjectsController < ApplicationController
     end
 
     def create
-        # binding.pry
         @project = Project.create(project_params)
         if @project.save
             flash[:success] = "Your project was created."
             redirect_to project_path(@project)
         else
             flash[:error] = "Something went wrong! Please try again."
-            # binding.pry
             redirect_to new_project_path
         end
     end
