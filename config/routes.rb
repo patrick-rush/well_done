@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :comments
-
   resources :tasks
   resources :projects do
     resources :tasks, only: [:new]
