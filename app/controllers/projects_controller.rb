@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
             redirect_to project_path(@project)
         else
             flash[:error] = "Something went wrong! Please try again."
-            binding.pry
+            # binding.pry
             redirect_to new_project_path
         end
     end

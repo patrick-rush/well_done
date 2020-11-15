@@ -4,5 +4,6 @@
     <%= link_to project.title, project_path(project) %>
     <%= render partial: "tasks/task_list", locals: {tasks: project.incomplete_tasks} %>
 <% end %>
+
 <%= button_to 'New Project', new_project_path, method: :get %>
 <%= button_to 'New Task', new_task_path, method: :get %>

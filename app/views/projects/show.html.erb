@@ -1,16 +1,13 @@
 <h3 class="title"><%= @project.title %></h3> <br>
 
 <h5>Tasks</h5>
-<% @project.incomplete_tasks.each do |task| %>
-    <%= link_to task.title, task_path(task) %>
-    <ul>
-        <li>Due <%= readable_due_date task %></li>
-    </ul>
-<% end %>
+<%= render partial: "tasks/task_list", locals: {tasks: @project.incomplete_tasks} %> <br>
+
 <% if @project.completed_tasks.count > 0 %>
     <h5>Completed Tasks</h5>
     <%= render partial: "tasks/task_list", locals: {tasks: @project.completed_tasks} %> <br>
 <% end %>
+
 <%= button_to "Edit This Project", edit_project_path(@project), method: :get %>
 <%= button_to 'New Task', new_project_task_path(@project), method: :get %>
 <%= button_to "Delete Project", project_path(@project), method: :delete %>

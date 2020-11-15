@@ -12,8 +12,11 @@ class UsersController < ApplicationController
         @user = User.find_by(id: params[:id])
         if @user == current_user
             @projects = @user.projects
-        else
+        elsif @user
             @projects = @user.public_projects
+        else
+            flash[:error] = "Something went wrong! Please try again."
+            redirect_to root_path
         end
     end
 
