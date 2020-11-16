@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-    has_many :tasks, inverse_of: :project 
+    has_many :tasks
     accepts_nested_attributes_for :tasks
     has_many :users, through: :tasks
     has_many :comments, as: :commentable
