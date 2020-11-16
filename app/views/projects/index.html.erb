@@ -1,7 +1,7 @@
 <h3><%= @user.full_name %>'s Projects </h3><br>
 
 <% @projects.each do |project| %>
-    <%= link_to project.title, project_path(project) %>
+    <h5><%= link_to project.title, project_path(project) %></h5>
     <%= render partial: "tasks/task_list", locals: {tasks: project.incomplete_tasks} %>
 <% end %>
 

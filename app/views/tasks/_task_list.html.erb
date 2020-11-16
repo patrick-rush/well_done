@@ -1,5 +1,10 @@
 <ul>
     <% tasks.each do |task| %>
-        <li><%= link_to task.title, task_path(task) %> due <%= readable_due_date task %> in <%= task.project.title %></li>
+        <li><%= link_to task.title, task_path(task) %></li>
+        <ul>
+            <li>Due <%= readable_due_date task %></li>
+            <li>In <%= task.project.title %></li>
+            <li>Created by <%= task.user.full_name %></li>
+        </ul>
     <% end %>
 </ul>
