@@ -17,9 +17,6 @@
       <%= render 'layouts/navigation' %>
     </header>
 
-    <% if notice == "Signed out successfully."%>
-      <p>Please note: <%= link_to 'Click here to sign out of your Google account.', 'https://accounts.google.com/signin' %> </p>
-    <% end %>
     <% flash.each do |type, msg| %>
       <div>
         <%= msg %>

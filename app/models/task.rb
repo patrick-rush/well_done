@@ -3,7 +3,7 @@ class Task < ApplicationRecord
   belongs_to :project
   has_many :comments, as: :commentable
 
-  validates :title, :user_id, presence: true
+  validates :title, presence: true
   validates :project, presence: true
   validates :completed, inclusion: [true, false]
   validates_date :due_date, on_or_after: lambda { Date.now } 
