@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
             @projects = @user.public_projects
         else
             @user = current_user
-            @projects = @user.projects
+            @projects = @user.projects.uniq
         end
     end
 
