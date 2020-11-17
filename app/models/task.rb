@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
   belongs_to :user
   belongs_to :project
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :delete_all
 
   validates :title, presence: true
   validates :project, presence: true
