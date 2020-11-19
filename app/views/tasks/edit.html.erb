@@ -1,3 +1,15 @@
+<% if @task.errors.any? %>
+  <div id="error_explanation">
+    <h4><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h4>
+ 
+    <ul>
+    <% @task.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h3>Edit <%= @task.title %></h3> <br>
 
 <%= render partial: "task_form", locals: {task: @task, projects: @projects} %>

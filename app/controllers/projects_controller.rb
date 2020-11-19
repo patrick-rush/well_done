@@ -27,8 +27,7 @@ class ProjectsController < ApplicationController
             flash[:success] = "Your project was created."
             redirect_to project_path(@project)
         else
-            flash[:error] = "Something went wrong! Please try again."
-            redirect_to new_project_path
+            render :new
         end
     end
 
@@ -40,8 +39,7 @@ class ProjectsController < ApplicationController
             flash[:success] = "Your project has been updated."
             redirect_to project_path(@project)
         else
-            flash[:error] = "Something went wrong! Please try again."
-            redirect_to edit_project_path(@project)
+            render :edit 
         end
     end
 

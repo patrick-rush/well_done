@@ -1,17 +1,29 @@
+<% if @project.errors.any? %>
+  <div id="error_explanation">
+    <h4><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h4>
+ 
+    <ul>
+    <% @project.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h3>New Project</h3> <br>
 
 <%= form_for @project do |f| %>
     <%= f.label :title %>
     <%= f.text_field :title %> <br>
-    <%= f.label :private, "Private?*" %> 
+    <%= f.label :private, "Private?" %> 
     <%= f.check_box :private, checked: false, unchecked: true %> <br>
 
     <%= f.fields_for :tasks do |task| %>
         <div>Make sure to add a task to get your project started!</div>
-        <%= task.hidden_field :user_id, value: current_user.id %>        
+        <%= task.hidden_field :user_id, value: current_user.id %> 
         <%= task.label :title %>
         <%= task.text_field :title %> <br>
-        <%= task.label :due_date %>
+        <%= task.label :due_date %> 
         <%= task.date_field :due_date %> <br>
     <% end %>
 

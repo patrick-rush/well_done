@@ -25,11 +25,12 @@ class TasksController < ApplicationController
             flash[:success] = "Task has been added"
             redirect_to project_path(@task.project_id)
         else
-            flash[:error] = "Something went wrong! Please try again."
             if params[:task][:nested_route]
-                redirect_to new_project_task_path(params[:task][:project_id])
+                render :new
             else
-                redirect_to new_task_path
+                @task.project_id = nil
+                @projects = current_user.projects 
+                render :new
             end
         end
     end
@@ -43,8 +44,7 @@ class TasksController < ApplicationController
             flash[:success] = "Task updated."
             redirect_to project_path(@task.project)
         else
-            flash[:error] = "Something went wrong! Please try again."
-            redirect_to edit_task_path(@task)
+            render :edit
         end
     end
 
