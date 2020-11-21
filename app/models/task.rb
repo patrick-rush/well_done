@@ -8,7 +8,12 @@ class Task < ApplicationRecord
   validates :completed, inclusion: [true, false]
   validates_date :due_date, on_or_after: lambda { Date.now } 
 
-  def self.by_due_date
-    where(completed: false).order(due_date: :asc).limit(10)
+  def self.by_due_date(user)
+    where(completed: false, user: user).order(due_date: :asc).limit(10)
   end
+
+  def self.completed(user)
+    where(completed: true, user: user).order(due_date: :asc)
+  end
+
 end

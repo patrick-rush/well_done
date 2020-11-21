@@ -2,7 +2,11 @@ class TasksController < ApplicationController
     before_action :set_task, only: [:show, :edit, :update, :destroy]
 
     def index
-        @tasks = Task.by_due_date.where(user_id: current_user.id)
+        @tasks = Task.by_due_date(current_user)
+    end
+
+    def completed
+        @tasks = Task.completed(current_user)
     end
 
     def show

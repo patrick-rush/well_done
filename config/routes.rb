@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/tasks/completed' => 'tasks#completed'
+  
   resources :tasks
   resources :projects do
     resources :tasks, only: [:new]
@@ -16,6 +18,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     root 'devise/sessions#new'
   end
+
+
 
   # Example custom route
   # get '/posts/:id' => 'posts#show'
