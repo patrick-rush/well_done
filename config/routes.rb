@@ -19,10 +19,4 @@ Rails.application.routes.draw do
     root 'devise/sessions#new'
   end
 
-
-
-  # Example custom route
-  # get '/posts/:id' => 'posts#show'
-
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
